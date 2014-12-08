@@ -13,3 +13,4 @@ Syntax:
 ./script_name.sh firstname.lastname
 ./script_name.sh @domain.com
 
+Please see https://collaborate.linaro.org/display/ITS/Mailman+Administration for full documentation.
