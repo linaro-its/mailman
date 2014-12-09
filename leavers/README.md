@@ -1,16 +1,19 @@
-These files are used to make administrating lists.linaro.org easier.
+These simple bash scripts are used to make administrating mailman easier.
 
-The scripts are split up into two types. Both and Private.
+It allows you a sysadmin to easily delete and search for usernames and domain names from a list.
+
+The scripts are split up into three types. Public, Private and both.
 
 Both:
-Searches Public and Private lists.
+Searches/Deletes Public and Private lists.
 
 Private:
-Searches Privates lists only.
+Searches/Deletes Privates lists only.
+
+Public:
+Searches/Deletes from public lists only
 
 Syntax:
 ./script_name.sh first.lastname@domain.com
 ./script_name.sh firstname.lastname
 ./script_name.sh @domain.com
-
-Please see https://collaborate.linaro.org/display/ITS/Mailman+Administration for full documentation.
