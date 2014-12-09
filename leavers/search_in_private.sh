@@ -15,4 +15,5 @@ if [[ $@ ]]; then
      done
  else
     echo "No arguments given"
+    echo -e "Syntax: \n ./script_name.sh first.lastname@address.com  \n ./script_name.sh firstname.lastname \n ./script_name.sh @domain.com"
 fi

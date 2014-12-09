@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script DELETES for given user or domain from *PRIVATE* lists.
+# This script DELETES for given user or domain from PRIVATE lists.
 #
 # Syntax ./script_name.sh first.lastname@address.com
 # ./script_name.sh firstname.lastname
@@ -10,10 +10,22 @@ if [[ $@ ]]; then
     do
       finduser=$(list_members $mailinglist | grep $1 |  awk '{print}')
       if [[ -n $finduser ]];  then
-        echo DELETED $finduser FROM PRIVATE LIST $mailinglist"@"$NICKNAME
-        remove_members $mailinglist $1
+         array=($finduser);
+         echo "Found ${#array[*]} USERS for PRIVATE LIST $mailinglist"@"$NICKNAME";
+         for ((i=0; i<${#array[*]}; i++));
+           do
+             read -p "Are you sure you want to delete ${array[$i]} from $mailinglist@$NICKNAME?" -n 1 -r
+             echo
+             if [[ $REPLY =~ ^[Yy]$ ]]; then
+               echo "DELETED ${array[$i]} FROM PRIVATE LIST $mailinglist"@"$NICKNAME";
+               remove_members $mailinglist ${array[$i]}
+             else
+               echo "Did NOT delete ${array[$i]} from $mailinglist@$NICKNAME"
+             fi
+           done
       fi
-     done
+    done
 else
   echo "No arguments given."
+  echo -e "Syntax: \n ./script_name.sh first.lastname@address.com  \n ./script_name.sh firstname.lastname \n ./script_name.sh @domain.com"
 fi

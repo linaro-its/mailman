@@ -1,12 +1,12 @@
 #!/bin/bash
-# This script searches for given user or domain from ALL (Public and Private) lists.
+# This script searches for given user or domain from ALL PUBLIC lists.
 #
 # Syntax ./script_name.sh first.lastname@address.com
 # ./script_name.sh firstname.lastname
 # ./script_name.sh @domain.com
 
 if [[ $@ ]]; then
-  for mailinglist in $(list_lists -b)
+  for mailinglist in $(list_lists -b -a)
     do
 	  finduser=$(list_members $mailinglist | grep $1 |  awk '{print}')
       if [[ -n $finduser ]]; then
