@@ -1,6 +1,9 @@
 #!/bin/sh
+# Deployed via ansible
+# Source http://www.jamesh.id.au/articles/mailman-spamassassin/mmlearn
+# https://stash.git.linaro.org/projects/ITS/repos/mailman
 
-#MMHOME=/var/mailman
+MMHOME=/var/lib/mailman
 SAHOME=/var/lib/spamassassin
 
 list=$1
@@ -14,7 +17,7 @@ if [ ! -d $HOME ]; then
     exit 1
 fi
 
-if /usr/sbin/list_lists -b | grep -q $list > /dev/null 2>&1; then
+if $MMHOME/bin/list_lists -b | grep -q $list > /dev/null 2>&1; then
     :
 else
     echo "Mailing list $list not found"
@@ -24,14 +27,13 @@ fi
 tmpmbox=`mktemp ${TMPDIR:-/tmp}/mmlearn.mbox.XXXXXX`
 
 # create an mbox file of all the held messages
-export PYTHONPATH=/usr/lib/mailman/
-python -c "
+PYTHONPATH=$MMHOME:$MMHOME/pythonlib python -c "
 import os
 import pickle
 import email
+from Mailman.mm_cfg import DATA_DIR
 
 mbox = open('$tmpmbox', 'w')
-DATA_DIR = '/mnt/data/mailman/data'
 
 files = [ file for file in os.listdir(DATA_DIR)
           if file.startswith('heldmsg-$list') ]
