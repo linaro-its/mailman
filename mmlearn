@@ -52,4 +52,4 @@ mbox.close()
 sa-learn --showdots --spam --mbox $tmpmbox
 rm -f $tmpmbox
 
-chown -R spamassassin.spamassassin $HOME
+chown -R debian-spamd.debian-spamd $HOME
