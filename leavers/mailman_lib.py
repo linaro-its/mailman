@@ -54,13 +54,13 @@ def remove_member(to_remove):
         process = subprocess.Popen(['list_members', this_list], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         result = process.communicate()
         members = result[0].strip().split('\n')
-            # Remove the member we want to lose
-            if to_remove in members:
-                process = subprocess.Popen(['remove_members', this_list, to_remove], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                result = process.communicate()
-                if result[0] != "":
-                    output += "Error while removing from %s: %s\r\n" % (this_list, result[0])
-                else:
-                    output += "Removed %s as member from %s\r\n" % (to_remove, this_list)
+        # Remove the member we want to lose
+        if to_remove in members:
+            process = subprocess.Popen(['remove_members', this_list, to_remove], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            result = process.communicate()
+            if result[0] != "":
+                output += "Error while removing from %s: %s\r\n" % (this_list, result[0])
+            else:
+                output += "Removed %s as member from %s\r\n" % (to_remove, this_list)
 
     return output
