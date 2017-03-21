@@ -10,8 +10,6 @@ import mailman_lib
 
 if len(sys.argv) != 2:
     print "Must specify the email address to remove as admin"
-    return
-
-to_remove = sys.argv[1]
-
-print mailman_lib.remove_admin(to_remove)
+else:
+    to_remove = sys.argv[1]
+    print mailman_lib.remove_admin(to_remove)
