@@ -8,6 +8,7 @@ import mailman_lib
 
 if len(sys.argv) != 2:
     print "Must specify the email address to remove"
+    return
 
 to_remove = sys.argv[1]
 
