@@ -1,7 +1,6 @@
 #!/bin/sh
 # Deployed via ansible
 # Source http://www.jamesh.id.au/articles/mailman-spamassassin/mmlearn
-# https://stash.git.linaro.org/projects/ITS/repos/mailman
 
 MMHOME=/var/lib/mailman
 SAHOME=/var/lib/spamassassin
